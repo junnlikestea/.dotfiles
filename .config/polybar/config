@@ -1,0 +1,193 @@
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[colors]
+white = #ffffff
+background = #aa262625
+background-alt = #4e4e4e
+foreground = #dfdfdf
+foreground-alt = #4e4e4e
+primary = #1f222d
+secondary = #FF6200
+alert = #fb4934
+linecolor = #fba922
+
+[bar/bar]
+width = 100%
+height = 18
+fixed-center = true
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 0
+
+modules-right = spotify separator
+modules-center = time-singapore
+modules-left = bspwm
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 2
+underline-color = ${colors.white}
+
+tray-detached = false
+tray-position = left
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 16
+;tray-padding = 2 
+tray-transparent = true
+tray-scale = 1.0
+
+font-0 = "Scientifica:size=9"
+font-1 = Font Awesome 5 Free:pixelsize=10;3
+font-2 = Font Awesome 5 Free Solid:pixelsize=10;3
+font-3 = Font Awesome 5 Brands:pixelsize=10;3
+font-4 = Zpix:pixelsize=10;3
+
+[module/bspwm]
+type = internal/bspwm
+ 
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+format-mounted-prefix = " "
+format-mounted-foreground = ${root.foreground}
+label-mounted = DU:%percentage_used%%
+label-mounted-foreground = ${root.foreground}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = #666
+format-mounted-padding = 1
+format-unmounted-padding = 1
+
+[module/date]
+type = internal/date
+label =  %{F#666} %{F-} %date%  %{F#e60053}%{F-} %time%
+date = %Y-%m-%d
+time = %H:%M
+interval = 5
+format-foreground = ${colors.foreground}
+format-padding = 1
+
+[module/time-singapore]
+type = custom/script
+exec = TZ=Asia/Singapore date +"Singapore: %H:%M"
+interval = 30
+
+[module/volume]
+type = internal/alsa
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = #666
+label-muted = Muted
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = #666
+
+format-muted-padding = 1
+format-volume-padding = 1
+
+[module/cpu]
+type =                      internal/cpu
+interval =                  2
+format-prefix =             " "
+format-prefix-foreground =  ${root.foreground}
+;format-underline =          ${colors.indg}
+label =                     CPU:%{A:alacritty -e htop:}%percentage%%%{A}
+format =                    <label>
+
+[module/memory]
+type =                      internal/memory
+interval =                  2
+format-prefix =             " "
+format-prefix-foreground =  ${root.foreground}
+;format-underline =          ${colors.indg}
+label =                     %{A:alacritty -e htop:}%mb_used%(%percentage_used%%)%{A}
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = #4e4e4e
+
+[module/vpnstatus]
+type = custom/script
+exec = ~/.config/polybar/scripts/vpn.sh
+interval = 1
+format-underline = #00ff44
+format-prefix = ""
+format-prefix-foreground = #5b
+
+[module/spotify]
+type = custom/script
+interval = 2
+format-prefix = " "
+format = <label>
+exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
+exec-if = pgrep -x spotify
+
+[module/battery]
+type = internal/battery
+full-at = 100
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%% 
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+
+format-full = <label-full>
+format-full-prefix = 
+format-full-prefix-foreground = #55aa55
+
+ramp-capacity-0 =  
+ramp-capacity-1 =  
+ramp-capacity-2 =  
+ramp-capacity-0-foreground = ${colors.red}
+ramp-capacity-1-foreground = #666
+ramp-capacity-2-foreground = #55aa55
+
+animation-charging-0 =  
+animation-charging-1 =   
+animation-charging-2 =  
+animation-charging-foreground = #55aa55
+animation-charging-framerate = 750
+
+format-full-padding = 1
+format-charging-padding = 1
+format-discharging-padding = 1
+
+[settings]
+screenchange-reload = true
