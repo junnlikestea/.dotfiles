@@ -97,7 +97,7 @@ format-padding = 1
 
 [module/time-singapore]
 type = custom/script
-exec = TZ=Asia/Singapore date +"Singapore: %H:%M"
+exec = TZ=Australia/Brisbane date +"%H:%M"
 interval = 30
 
 [module/volume]

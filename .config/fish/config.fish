@@ -41,6 +41,8 @@ end
 if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
 end
+
+
 # checks for domains that have hanging records.
 function check_nx
 	while read -la line 
@@ -171,7 +173,7 @@ function fish_prompt
 	set_color brblack
 	echo -n "["(date "+%H:%M")"] "
 	set_color blue
-	echo -n junn #hostname
+	echo -n (hostname) #hostname
 	if [ $PWD != $HOME ]
 		set_color brblack
 		echo -n ':'
