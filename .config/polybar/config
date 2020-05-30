@@ -2,11 +2,12 @@
 margin-top = 0
 margin-bottom = 0
 
+#https://github.com/Liverbrain/linux-dotfiles/blob/master/polybar/config
 [colors]
 white = #ffffff
-background = #aa262625
+background = #1d2021
 background-alt = #4e4e4e
-foreground = #dfdfdf
+foreground = #ebdbb2
 foreground-alt = #4e4e4e
 primary = #1f222d
 secondary = #FF6200
@@ -23,14 +24,14 @@ locale = en_US.UTF-8
 enable-ipc = true
 
 padding-left = 1
-padding-right = 1
+padding-right = 2
 
 module-margin-left = 0
 module-margin-right = 0
 
-modules-right = spotify separator
-modules-center = time-singapore
-modules-left = bspwm
+modules-right = volume pulseaudio date
+modules-center = 
+modules-left = bspwm spotify
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -47,11 +48,10 @@ tray-offset-y = 0
 tray-transparent = true
 tray-scale = 1.0
 
-font-0 = "Scientifica:size=9"
-font-1 = Font Awesome 5 Free:pixelsize=10;3
-font-2 = Font Awesome 5 Free Solid:pixelsize=10;3
-font-3 = Font Awesome 5 Brands:pixelsize=10;3
-font-4 = Zpix:pixelsize=10;3
+font-0 = rissole:pixelsize=10;1
+font-1 = waffle:pixelsize=10;1
+font-2 = CozetteVector:pixelsize=10;2
+font-4 = Zpix:pixelsize=10;1
 
 [module/bspwm]
 type = internal/bspwm
@@ -88,17 +88,47 @@ format-unmounted-padding = 1
 
 [module/date]
 type = internal/date
-label =  %{F#666} %{F-} %date%  %{F#e60053}%{F-} %time%
-date = %Y-%m-%d
-time = %H:%M
 interval = 5
-format-foreground = ${colors.foreground}
-format-padding = 1
 
-[module/time-singapore]
-type = custom/script
-exec = TZ=Australia/Brisbane date +"%H:%M"
-interval = 30
+date = " %m-%d-%Y"
+date-alt = " %A"
+
+time = %l:%M %p
+time-alt = %l:%M %p
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+
+label = %date%  %time%
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = ⏻︎
+label-open-foreground = ${colors.secondary}
+label-close = cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
 
 [module/volume]
 type = internal/alsa
@@ -152,7 +182,7 @@ format-prefix-foreground = #5b
 [module/spotify]
 type = custom/script
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 exec-if = pgrep -x spotify

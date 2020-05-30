@@ -2,7 +2,7 @@
 
 sxhkd &
 polybar bar &
-feh --bg-fill ~/Downloads/wall4.jpg
+feh --bg-fill ~/Downloads/wall5.jpg
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 
