@@ -29,7 +29,7 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-right = volume pulseaudio date
+modules-right = volume date
 modules-center = 
 modules-left = bspwm spotify
 
@@ -132,6 +132,15 @@ menu-2-1-exec = menu-open-0
 
 [module/volume]
 type = internal/alsa
+
+master-soundcard = default
+headphone-soundcard = default
+speaker-soundcard = default
+master-mixer = Master
+headphone-id = 44
+headphone-mixer = Headphone
+mapping = true
+interval = 5
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
