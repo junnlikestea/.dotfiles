@@ -181,7 +181,7 @@ format-prefix-foreground = #5b
 
 [module/spotify]
 type = custom/script
-interval = 2
+interval = 5
 format-prefix = " "
 format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'

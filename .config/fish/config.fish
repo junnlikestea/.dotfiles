@@ -16,6 +16,7 @@ abbr -a fishc 'nvim ~/.config/fish/config.fish'
 abbr -a vimc 'nvim ~/.config/nvim/init.vim'
 abbr -a inst 'sudo xbps-install -S'
 abbr -a query 'xbps-query -Rs'
+#comm -23 <(sort a.txt) <(sort b.txt)
 # the command naffy talked about during nahamsec stream.
 abbr -a naffynmap 'nmap -T 4 -iL hosts -Pn --script=http-title -p80,4443,4080,443 --open'
 abbr -a grootdomain 'rg "(^\.|([a-z]*starbucks)\.(\w*)\.(\w*))|(^\.|([a-z]*starbucks)\.(\w*))" -o -N -I | sort -u'
