@@ -18,15 +18,11 @@ abbr -a inst 'sudo xbps-install -S'
 abbr -a query 'xbps-query -Rs'
 #comm -23 <(sort a.txt) <(sort b.txt)
 # the command naffy talked about during nahamsec stream.
-abbr -a naffynmap 'nmap -T 4 -iL hosts -Pn --script=http-title -p80,4443,4080,443 --open'
+#abbr -a naffynmap 'nmap -T 4 -iL hosts -Pn --script=http-title -p80,4443,4080,443 --open'
 abbr -a grootdomain 'rg "(^\.|([a-z]*starbucks)\.(\w*)\.(\w*))|(^\.|([a-z]*starbucks)\.(\w*))" -o -N -I | sort -u'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 set GOPATH $HOME/go
 set -U fish_user_paths /usr/local/sbin /usr/local/bin /usr/bin /bin $HOME/.cargo/bin:$PATH $PATH:/usr/local/go/bin:$GOPATH/bin
-
-#if status --is-interactive
-#	tmux ^ /dev/null; and exec true
-#end
 
 if command -v exa > /dev/null
 	abbr -a l 'exa'
@@ -91,7 +87,7 @@ function apkdeobf
 end
 
 function decodeb64 
-	echo "$argv" | base64 -D
+	echo "$argv" | base64 -d
 	echo -e "\n"
 end
 
