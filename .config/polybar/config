@@ -200,37 +200,5 @@ format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 exec-if = pgrep -x spotify
 
-[module/battery]
-type = internal/battery
-full-at = 100
-time-format = %H:%M
-
-format-charging = <animation-charging> <label-charging>
-label-charging = %percentage%% 
-
-format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = %percentage%%
-
-format-full = <label-full>
-format-full-prefix = 
-format-full-prefix-foreground = #55aa55
-
-ramp-capacity-0 =  
-ramp-capacity-1 =  
-ramp-capacity-2 =  
-ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1-foreground = #666
-ramp-capacity-2-foreground = #55aa55
-
-animation-charging-0 =  
-animation-charging-1 =   
-animation-charging-2 =  
-animation-charging-foreground = #55aa55
-animation-charging-framerate = 750
-
-format-full-padding = 1
-format-charging-padding = 1
-format-discharging-padding = 1
-
 [settings]
 screenchange-reload = true
