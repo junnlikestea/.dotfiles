@@ -2,7 +2,6 @@
 margin-top = 0
 margin-bottom = 0
 
-#https://github.com/Liverbrain/linux-dotfiles/blob/master/polybar/config
 [colors]
 white = #ffffff
 background = #1d2021
@@ -29,7 +28,7 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-right = volume date
+modules-right = volume cpu date
 modules-center = 
 modules-left = bspwm spotify sonos
 
@@ -90,13 +89,13 @@ format-unmounted-padding = 1
 type = internal/date
 interval = 5
 
-date = " %m-%d-%Y"
-date-alt = " %A"
+date = "%a %d"
+date-alt = %a %b %d
 
-time = %l:%M %p
-time-alt = %l:%M %p
+time = %I:%M
+time-alt = %I:%M%p
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date%  %time%
@@ -161,11 +160,9 @@ format-volume-padding = 1
 [module/cpu]
 type =                      internal/cpu
 interval =                  2
-format-prefix =             " "
+format-prefix =             "💻 "
 format-prefix-foreground =  ${root.foreground}
-;format-underline =          ${colors.indg}
-label =                     CPU:%{A:alacritty -e htop:}%percentage%%%{A}
-format =                    <label>
+label =                     %percentage:2%%
 
 [module/memory]
 type =                      internal/memory

@@ -15,8 +15,9 @@ super + @space
 super + Escape
 	pkill -USR1 -x sxhkd
 
-super + {_,shift + }z
-	scrot
+Print
+	sleep 0.2; \
+	scrot -s
 
 #
 # bspwm hotkeys

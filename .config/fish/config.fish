@@ -68,6 +68,9 @@ function getroots --description "getroots <domain> <file_name.txt>"
 	echo $argv[1] | waybackurls | unfurl -u domains format %r | tee -a $argv[2]
 end
 
+function bufferover
+	curl --url "https://tls.bufferover.run/dns?q=$argv[1]" 2>/dev/null | jq .Results | cut -d ',' -f 3 | sed -e 's/\[//g' -e 's/\]//g' | sort -u
+end
 
 function ffm  --description "ffm <hosts.txt> <wordlist.txt>"
 	# https://twitter.com/gwendallecoguic/status/1202984025842995200
