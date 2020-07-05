@@ -89,7 +89,7 @@ format-unmounted-padding = 1
 type = internal/date
 interval = 5
 
-date = "%a %d"
+date = " %a %d"
 date-alt = %a %b %d
 
 time = %I:%M
@@ -160,7 +160,7 @@ format-volume-padding = 1
 [module/cpu]
 type =                      internal/cpu
 interval =                  2
-format-prefix =             "💻 "
+format-prefix =             " "
 format-prefix-foreground =  ${root.foreground}
 label =                     %percentage:2%%
 
