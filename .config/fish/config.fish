@@ -17,13 +17,13 @@ abbr -a fishc 'nvim ~/.config/fish/config.fish'
 abbr -a vimc 'nvim ~/.config/nvim/init.vim'
 abbr -a inst 'sudo xbps-install -S'
 abbr -a query 'xbps-query -Rs'
-#comm -23 <(sort a.txt) <(sort b.txt)
-# the command naffy talked about during nahamsec stream.
+# we all know this is true
 #abbr -a naffynmap 'nmap -T 4 -iL hosts -Pn --script=http-title -p80,4443,4080,443 --open'
-abbr -a grootdomain 'rg "(^\.|([a-z]*starbucks)\.(\w*)\.(\w*))|(^\.|([a-z]*starbucks)\.(\w*))" -o -N -I | sort -u'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias render_template='python -c "from jinja2 import Template; import sys; print(Template(sys.stdin.read()).render());"'
+
 set GOPATH $HOME/go
-set -U fish_user_paths /usr/local/sbin /usr/local/bin /usr/bin /bin $HOME/.cargo/bin:$PATH $PATH:/usr/local/go/bin:$GOPATH/bin
+set -U fish_user_paths ~/.local/bin /usr/local/sbin /usr/local/bin /usr/bin /bin $HOME/.cargo/bin:$PATH $PATH:/usr/local/go/bin:$GOPATH/bin
 
 if command -v exa > /dev/null
 	abbr -a l 'exa'
@@ -38,14 +38,6 @@ end
 
 if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
-end
-
-
-# checks for domains that have hanging records.
-function check_nx
-	while read -la line 
-		dig $line | grep "CNAME" | awk '{print $1}' | xargs dig | grep "NXDOMAIN" && echo $line
-	end < $argv
 end
 
 function gcidr 
@@ -67,10 +59,6 @@ end
 function getroots --description "getroots <domain> <file_name.txt>"
 	gf urls | unfurl -u domains format %r | tee -a $argv[2]
 	echo $argv[1] | waybackurls | unfurl -u domains format %r | tee -a $argv[2]
-end
-
-function bufferover
-	curl --url "https://tls.bufferover.run/dns?q=$argv[1]" 2>/dev/null | jq .Results | cut -d ',' -f 3 | sed -e 's/\[//g' -e 's/\]//g' | sort -u
 end
 
 function ffm  --description "ffm <hosts.txt> <wordlist.txt>"
