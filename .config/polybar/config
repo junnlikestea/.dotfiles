@@ -30,7 +30,7 @@ module-margin-right = 0
 
 modules-right = volume cpu date
 modules-center = 
-modules-left = bspwm spotify sonos
+modules-left = bspwm title spotify sonos
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -39,7 +39,6 @@ underline-size = 2
 underline-color = ${colors.white}
 
 tray-detached = false
-tray-position = left
 tray-offset-x = 0
 tray-offset-y = 0
 ;tray-maxsize = 16
@@ -70,6 +69,26 @@ label-urgent-padding = 2
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
+
+[module/title]
+type = internal/xwindow
+; Available tags:
+;   <label> (default)
+format = <label>
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-padding = 4
+
+; Available tokens:
+;   %title%
+; Default: %title%
+label = %title%
+label-maxlen = 50
+
+; Used instead of label when there is no window title
+; Available tokens:
+;   None
+label-empty-foreground = #707880
 
 [module/filesystem]
 type = internal/fs

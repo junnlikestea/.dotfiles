@@ -21,9 +21,10 @@ abbr -a query 'xbps-query -Rs'
 #abbr -a naffynmap 'nmap -T 4 -iL hosts -Pn --script=http-title -p80,4443,4080,443 --open'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias render_template='python -c "from jinja2 import Template; import sys; print(Template(sys.stdin.read()).render());"'
+alias rnotebook='docker run --user root --rm -p 10000:8888 -e JUPYTER_ENABLE_LAB=yes -e GRANT_SUDO=yes tempest:latest'
 
 set GOPATH $HOME/go
-set -U fish_user_paths ~/.local/bin /usr/local/sbin /usr/local/bin /usr/bin /bin $HOME/.cargo/bin:$PATH $PATH:/usr/local/go/bin:$GOPATH/bin
+set -U fish_user_paths ~/.local/bin /usr/local/sbin /usr/local/bin /usr/bin /bin $HOME/.cargo/bin:$PATH $PATH:/usr/local/go/bin:$GOPATH/bin /home/junn/BurpSuiteCommunity
 
 if command -v exa > /dev/null
 	abbr -a l 'exa'
@@ -40,6 +41,11 @@ if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
 end
 
+# Plugins
+#fundle plugin 'danhper/fish-ssh-agent'
+fish_ssh_agent
+
+# Functions
 function gcidr 
 	whois command(dig +short $argv | tail -n1) | grep CIDR
 end
@@ -121,6 +127,8 @@ function d
 	end
 end
 
+# Java Applications
+setenv _JAVA_AWT_WM_NONREPARENTING 1
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
