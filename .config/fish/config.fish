@@ -1,3 +1,6 @@
+######################################
+# Aliases
+######################################
 abbr -a e nvim
 abbr -a m make
 abbr -a g git
@@ -14,17 +17,23 @@ abbr -a kl 'keybase chat list'
 abbr -a pb 'nc termbin.com 9999'
 abbr -a htitles 'find . -type f | html-tool tags title | nvim -'
 abbr -a fishc 'nvim ~/.config/fish/config.fish'
+abbr -a polyc 'nvim ~/.config/polybar/config'
 abbr -a vimc 'nvim ~/.config/nvim/init.vim'
 abbr -a inst 'sudo xbps-install -S'
 abbr -a query 'xbps-query -Rs'
+abbr -a pcache 'sudo xbps-remove -yO'
+abbr -a rmorph 'sudo xbps-remove -yo'
+abbr -a rmkernel 'sudo vkpurge rm all'
+
 # we all know this is true
-#abbr -a naffynmap 'nmap -T 4 -iL hosts -Pn --script=http-title -p80,4443,4080,443 --open'
+#abbr -a naffymap 'nmap -T 4 -iL hosts -Pn --script=http-title -p80,4443,4080,443 --open'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias render_template='python -c "from jinja2 import Template; import sys; print(Template(sys.stdin.read()).render());"'
 alias rnotebook='docker run --user root --rm -p 10000:8888 -e JUPYTER_ENABLE_LAB=yes -e GRANT_SUDO=yes tempest:latest'
+alias tags='rusty-tags vi'
 
 set GOPATH $HOME/go
-set -U fish_user_paths ~/.local/bin /usr/local/sbin /usr/local/bin /usr/bin /bin $HOME/.cargo/bin:$PATH $PATH:/usr/local/go/bin:$GOPATH/bin /home/junn/BurpSuiteCommunity
+set -U fish_user_paths $HOME/.config/bin ~/.local/bin /usr/local/sbin /usr/local/bin /usr/bin /bin $HOME/.cargo/bin:$PATH $PATH:/usr/local/go/bin:$GOPATH/bin /home/junn/BurpSuiteCommunity
 
 if command -v exa > /dev/null
 	abbr -a l 'exa'
@@ -45,7 +54,14 @@ end
 #fundle plugin 'danhper/fish-ssh-agent'
 fish_ssh_agent
 
+######################################
 # Functions
+######################################
+
+function ps
+	pomo start -t $argv[1] --duration 30m $argv[2]
+end
+
 function gcidr 
 	whois command(dig +short $argv | tail -n1) | grep CIDR
 end
@@ -127,8 +143,13 @@ function d
 	end
 end
 
+# Rust
+setenv CARGO_INSTALL_ROOT "$HOME/.cargo"
+setenv RUST_SRC (rustc --print sysroot)/lib/rustlib/src/rust/library
 # Java Applications
 setenv _JAVA_AWT_WM_NONREPARENTING 1
+
+
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
@@ -145,11 +166,6 @@ setenv LESS_TERMCAP_se \e'[0m'           # end standout-mode
 setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
-
-# For RLS
-# https://github.com/fish-shell/fish-shell/issues/2456
-#setenv LD_LIBRARY_PATH (ustc +stable --print sysroot)"/lib:$LD_LIBRARY_PATH"
-#setenv RUST_SRC_PATH (rustc --print sysroot)"/lib/rustlib/src/rust/src"
 
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'

@@ -28,9 +28,9 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-right = volume cpu date
+modules-right = spotify sonos cpu date
 modules-center = 
-modules-left = bspwm title spotify sonos
+modules-left = bspwm title
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -83,7 +83,7 @@ format-padding = 4
 ;   %title%
 ; Default: %title%
 label = %title%
-label-maxlen = 50
+label-maxlen = 49
 
 ; Used instead of label when there is no window title
 ; Available tokens:
@@ -179,7 +179,7 @@ format-volume-padding = 1
 [module/cpu]
 type =                      internal/cpu
 interval =                  2
-format-prefix =             " "
+format-prefix =             "  "
 format-prefix-foreground =  ${root.foreground}
 label =                     %percentage:2%%
 
@@ -206,15 +206,15 @@ format-prefix-foreground = #5b
 
 [module/sonos]
 type = custom/script
-interval = 10
-format-prefix = " "
+interval = 2
+format-prefix = "♫ "
 format = <label>
 exec = ~/.config/polybar/scripts/sons
 
 [module/spotify]
 type = custom/script
 interval = 5
-format-prefix = " "
+format-prefix = "♫ "
 format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 exec-if = pgrep -x spotify

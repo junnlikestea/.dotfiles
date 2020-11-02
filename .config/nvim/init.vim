@@ -22,6 +22,9 @@ Plug 'machakann/vim-highlightedyank'
 " Semantic language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " Syntactic language support
 Plug 'dag/vim-fish'
 Plug 'plasticboy/vim-markdown'
@@ -88,6 +91,9 @@ let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
 let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
+
+" rusty-tags
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
 
 " Completion
 " Better display for messages
@@ -213,6 +219,14 @@ nnoremap <C-f> :sus<cr>
 " Jump to start and end of line using the home row keys
 map H ^
 map L $
+
+" Vim-Go
+" https://github.com/fatih/vim-go/wiki/Tutorial#hello-world
+autocmd FileType go nmap <leader>b  <Plug>(go-imports)<Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <S-n> :cnext<CR>
+autocmd FileType go nmap <S-m> :cprevious<CR>
+autocmd FileType go nnoremap <leader>a :cclose<CR>
 
 " Neat X clipboard integration
 " ,p will paste clipboard into buffer

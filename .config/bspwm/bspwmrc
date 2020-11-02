@@ -2,7 +2,7 @@
 
 sxhkd &
 polybar bar &
-feh --bg-fill ~/walls/wall5.jpg
+feh --bg-center ~/walls/waterfall.jpg
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 
@@ -18,5 +18,4 @@ bspc config gapless_monocle      true
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a google-chrome desktop='^2'
 bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
