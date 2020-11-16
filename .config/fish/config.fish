@@ -145,6 +145,7 @@ end
 
 # Rust
 setenv CARGO_INSTALL_ROOT "$HOME/.cargo"
+setenv CARGO_TARGET_DIR "$HOME/ferris/targets"
 setenv RUST_SRC (rustc --print sysroot)/lib/rustlib/src/rust/library
 # Java Applications
 setenv _JAVA_AWT_WM_NONREPARENTING 1
