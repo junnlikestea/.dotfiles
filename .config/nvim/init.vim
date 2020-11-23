@@ -86,6 +86,7 @@ nmap <leader>; :Buffers<CR>
 let g:localvimrc_ask = 0
 
 " racer + rust
+
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
@@ -310,8 +311,8 @@ else
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+autocmd FileType rust nmap <silent> <S-n> <Plug>(coc-diagnostic-prev)
+autocmd Filetype rust nmap <silent> <S-m> <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)

@@ -1,5 +1,5 @@
 {
-  "diagnostic.enable": false,
+  "diagnostic.enable": true,
   "diagnostic.virtualText": false,
   "diagnostic.joinMessageLines": true,
   "diagnostic.checkCurrentLine": true,
@@ -9,6 +9,6 @@
   "signature.enable": false,
   "coc.preferences.snippets.enable": false,
   "rust-analyzer.diagnostics.enable": false,
-  "rust-analyzer.inlayHints.chainingHints": false,
-  "rust-analyzer.serverPath": "/home/junn/.cargo/.bin/rust-analyzer"
+  "rust-analyzer.inlayHints.chainingHints": true,
+  "rust-analyzer.serverPath": "/home/junn/.cargo/bin/rust-analyzer"
 }
