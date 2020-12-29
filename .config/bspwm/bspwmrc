@@ -1,12 +1,17 @@
-#! /bin/sh
+#!/bin/sh
 
+#$HOME/.config/bspwm/autostart.sh
+xrandr --output HDMI-0 --primary --mode 1920x1080 --rotate normal --output DP-1 --mode 1920x1080 --rotate left --left-of HDMI-0 &
 sxhkd &
 polybar bar &
-feh --bg-center ~/walls/waterfall.jpg
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
+polybar bar_left &
 
-bspc monitor -d I II III IV V VI
+# https://www.reddit.com/r/unixporn/comments/6c7nlx/question_how_to_assign_dual_monitor_wallpapers/
+feh --bg-fill ~/walls/waterfall.jpg
+
+bspc monitor HDMI-0 -d 1 2 3 4 
+bspc monitor DP-1 -d 1 2 3 4
+#bspc monitor DP-1 -d 4 5 6 7
 
 bspc config border_width         1
 bspc config window_gap           0
